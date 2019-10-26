@@ -11,3 +11,5 @@
 .idea/**/gradle.xml
 .idea/**/libraries
 *.iws /out/
+db.sqlite3
+.idea
