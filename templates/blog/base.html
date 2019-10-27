@@ -17,7 +17,7 @@
     <!------- Custom css-------->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
-<body>
+<body class="loader">
 <!--------Navbar----------->
 <nav class="navbar navbar-dark">
     <div class="container">
@@ -42,7 +42,7 @@
                 <a>Welcome : {{ user.username }}</a>
                 </li>
                 {% else %}
-
+                    <li><a class="nav navbar-light" href="{% url 'login' %}"><span class="glyphicon glyphicon-user">Login</span></a></li>
 
             {% endif %}
         </ul>
@@ -50,5 +50,15 @@
 </nav>
 
 <!--------Content block-------->
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog_posts">
+                {% block content_block %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
