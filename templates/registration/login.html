@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'my_blog/../my_blog/../base.html' %}
 {% block content_block %}
     <div class="jumbotron">
         <h2>Please Login :</h2>
@@ -13,6 +13,5 @@
     {{form.as_p }}
     <input type="submit" class="btn btn-primary" value="login">
     <input type="hidden" name="next" value="{{ next }}">
-
     </form>
 {% endblock %}

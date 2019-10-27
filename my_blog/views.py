@@ -10,7 +10,7 @@ from django.views.generic import (TemplateView, ListView, DetailView, CreateView
 
 # Create your views here.
 class AboutView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'my_blog/about.html'
 
 
 class PostListView(ListView):
@@ -74,7 +74,7 @@ def add_comment_to_post(request, pk):
             return redirect('post_detail', pk=post.pk)
         else:
             form = CommentForm
-        return render(request, 'comment_form.html', {'form': form})
+        return render(request, 'my_blog/comment_form.html', {'form': form})
 
 
 @login_required

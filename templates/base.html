@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!----- Bootstrap ------>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!----------Medium Style Editor-------->
+    <link rel="stylesheet" href="/static/css/medium-editor-5.23.3/dist/css/medium-editor.css"> <!-- Core -->
+    <link rel="stylesheet" href="/static/css/medium-editor-5.23.3/dist/css/themes/default.css">
+    <!-- or any other theme -->
+    <script src="/static/css/medium-editor-5.23.3/dist/js/medium-editor.js"></script>
+    <!------- Custom css-------->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body class="loader">
+<!--------Navbar----------->
+<nav class="nav navbar navbar-dark ">
+    <div class="container">
+        <ul>
+            <li><a class="navbar-brand big-brand" href="{% url 'post_list' %}">My blog</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="https://github.com">GitHub</a></li>
+            <li><a href="https://linkedin.com">LinkedIn</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-light">
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'post_new' %}">New Post</a>
+                </li>
+                <li>
+                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li>
+                <a>Welcome : {{ user.username }}</a>
+                </li>
+                {% else %}
+                    <li><a class="nav navbar-light" href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!--------Content block-------->
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog_posts">
+                {% block content_block %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
