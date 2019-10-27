@@ -42,3 +42,20 @@
     margin-right: auto;
     margin-left: auto;
 }
+
+.postdate{
+    text-align: center;
+}
+ .posttitle{
+     font-size: 3em;
+     text-align: center;
+ }
+
+ .postcontent{
+     font-size: 1.5em;
+ }
+
+ .btn-comment{
+     position: absolute;
+     right: 0px;
+ }
