@@ -9,11 +9,11 @@ class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now())
+    create_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
-        self.published_date = timezone.now()
+        self.published_date = timezone.now
         self.save()
 
     def approve_comments(self):
@@ -30,7 +30,7 @@ class Comment(models.Model):
     post = models.ForeignKey('my_blog.Post', related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=100)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now())
+    create_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):
