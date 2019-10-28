@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
-from my_blog.models import *
-from my_blog.forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
+
+from my_blog.forms import PostForm, CommentForm
+from my_blog.models import *
 
 
 # Create your views here.
@@ -65,20 +65,15 @@ def post_publish(request, pk):
 @login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if request.method != 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
-            return redirect('post_detail', pk=post.pk)
-        else:
-            form = CommentForm
-        return render(request, 'my_blog/comment_form.html', {'form': form})
-    # else:
-        # import pdb
-        # pdb.set_trace()
-        # print("salaaaaam")
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm
+    return render(request, 'my_blog/comment_form.html', {'form': form})
 
 @login_required
 def comment_approve(request, pk):

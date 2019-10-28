@@ -26,25 +26,25 @@
 <!--------Navbar----------->
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand big-brand" href="{% url 'post_list' %}">My blog</a>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="navbar-brand big-brand" href="{% url 'post_list' %}">My blog</a></li>
-            <li class="nav-item active"><a href="{% url 'about' %}">About</a></li>
-            <li class="nav-item active"><a href="https://github.com">GitHub</a></li>
-            <li class="nav-item active"><a href="https://linkedin.com">LinkedIn</a></li>
+            <li class="nav-item active"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+            <li class="nav-item active"><a class="nav-link" href="https://github.com">GitHub</a></li>
+            <li class="nav-item active"><a class="nav-link" href="https://linkedin.com">LinkedIn</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-light">
             {% if user.is_authenticated %}
                 <li class="nav-item active">
-                    <a href="{% url 'post_new' %}">New Post</a>
+                    <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                    <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="{% url 'logout' %}">Log Out</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
                 <li class="nav-item active">
-                    <a>Welcome : {{ user.username }}</a>
+                    <a class="nav-link">Welcome : {{ user.username }}</a>
                 </li>
             {% else %}
                 <li><a class="nav navbar-light" href="{% url 'login' %}">Login</a></li>
