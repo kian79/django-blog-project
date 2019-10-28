@@ -1,4 +1,8 @@
-{% extends 'my_blog/../base.html' %}
+{% extends 'my_blog/../my_blog/base.html' %}
+{% load staticfiles %}
+{% block style %}
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+{% endblock %}
 {% block content_block %}
     <div class="centerstage">
         {% for post in post_list %}

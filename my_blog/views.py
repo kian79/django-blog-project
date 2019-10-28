@@ -65,7 +65,7 @@ def post_publish(request, pk):
 @login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if request.method == 'POST':
+    if request.method != 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -75,7 +75,10 @@ def add_comment_to_post(request, pk):
         else:
             form = CommentForm
         return render(request, 'my_blog/comment_form.html', {'form': form})
-
+    # else:
+        # import pdb
+        # pdb.set_trace()
+        # print("salaaaaam")
 
 @login_required
 def comment_approve(request, pk):

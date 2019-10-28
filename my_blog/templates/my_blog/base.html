@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <!----- Bootstrap ------>
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    {#    <link rel="stylesheet" href="/static/css/bootstrap.css">#}
+    {% block style %}
+    {% endblock %}
     <!----------Medium Style Editor-------->
     <link rel="stylesheet" href="/static/css/medium-editor-5.23.3/dist/css/medium-editor.css"> <!-- Core -->
     <link rel="stylesheet" href="/static/css/medium-editor-5.23.3/dist/css/themes/default.css">
@@ -19,35 +24,35 @@
 </head>
 <body class="loader">
 <!--------Navbar----------->
-<nav class="nav navbar navbar-dark ">
-    <div class="container">
-        <ul>
-            <li><a class="navbar-brand big-brand" href="{% url 'post_list' %}">My blog</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="https://github.com">GitHub</a></li>
-            <li><a href="https://linkedin.com">LinkedIn</a></li>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="navbar-brand big-brand" href="{% url 'post_list' %}">My blog</a></li>
+            <li class="nav-item active"><a href="{% url 'about' %}">About</a></li>
+            <li class="nav-item active"><a href="https://github.com">GitHub</a></li>
+            <li class="nav-item active"><a href="https://linkedin.com">LinkedIn</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-light">
             {% if user.is_authenticated %}
-                <li>
+                <li class="nav-item active">
                     <a href="{% url 'post_new' %}">New Post</a>
                 </li>
-                <li>
+                <li class="nav-item active">
                     <a href="{% url 'post_draft_list' %}">Drafts</a>
                 </li>
-                <li>
+                <li class="nav-item active">
                     <a href="{% url 'logout' %}">Log Out</a>
                 </li>
-                <li>
-                <a>Welcome : {{ user.username }}</a>
+                <li class="nav-item active">
+                    <a>Welcome : {{ user.username }}</a>
                 </li>
-                {% else %}
-                    <li><a class="nav navbar-light" href="{% url 'login' %}">Login</a></li>
+            {% else %}
+                <li><a class="nav navbar-light" href="{% url 'login' %}">Login</a></li>
 
             {% endif %}
         </ul>
-    </div>
-</nav>
+    </nav>
+</div>
 
 <!--------Content block-------->
 <div class="content container">
